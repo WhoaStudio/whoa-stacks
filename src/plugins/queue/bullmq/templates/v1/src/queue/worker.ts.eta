@@ -1,0 +1,5 @@
+import { Worker } from "bullmq";
+
+new Worker("jobs", async (job) => {
+  // TODO: handle job.data
+}, { concurrency: {{ concurrency }}, connection: { url: process.env.REDIS_URL } });

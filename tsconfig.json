@@ -1,4 +1,8 @@
 {
+  // Templates live under src/plugins/*/templates/** as .eta data files. They are
+  // never compiled or imported as modules, only read by the template resolver,
+  // so restricting include to .ts keeps them out of the program.
+  "include": ["src/**/*.ts", "scripts/**/*.ts"],
   "compilerOptions": {
     // Environment setup & latest features
     "lib": ["ESNext"],

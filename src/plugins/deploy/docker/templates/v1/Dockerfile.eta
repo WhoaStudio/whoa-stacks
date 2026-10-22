@@ -1,0 +1,15 @@
+FROM {{ baseImage }} AS base
+WORKDIR /app
+
+{{#if multiStage}}
+FROM base AS deps
+COPY package.json bun.lock ./
+RUN bun install --frozen-lockfile --production
+
+FROM base AS release
+COPY --from=deps /app/node_modules ./node_modules
+{{/if}}
+COPY . .
+
+EXPOSE 3000
+CMD ["bun", "run", "src/index.ts"]
