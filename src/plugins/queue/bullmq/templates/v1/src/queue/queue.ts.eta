@@ -1,0 +1,5 @@
+import { Queue } from "bullmq";
+
+export const jobs = new Queue("jobs", {
+  connection: { url: process.env.REDIS_URL },
+});
